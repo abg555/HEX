@@ -21,8 +21,8 @@ class HexBoard:
     def check_connection(self, player_id: int) -> bool:
         visited = set()
         stack = []
-        par= [(-1,0),(0,-1),(1,0),(0,1),(-1,1),(1,1)]
-        impar = [(-1,0),(0,-1),(1,0),(0,1),(-1,-1),(1,-1)]
+        even_rows = [(-1,0),(0,-1),(1,0),(0,1),(-1,-1),(1,-1)]
+        odd_rows= [(-1,0),(0,-1),(1,0),(0,1),(-1,1),(1,1)]
         if player_id == 1:
             for i in range(self.size):
                 if self.board[i][0] == player_id:
@@ -40,9 +40,9 @@ class HexBoard:
             if player_id == 2 and row == self.size-1:
                 return True
             if row % 2 == 0:
-                 position = par
+                 position = even_rows
             else:
-                position = impar
+                position = odd_rows
             for (i,j) in position:
                 new_row = row + i
                 new_col = col + j
